@@ -1,0 +1,13 @@
+﻿@{ 
+    Layout = "_Layout";
+}
+
+@using Domain.Entities
+@model IEnumerable<TodoTask>
+
+@foreach (var item in Model)
+	{
+		 <div>
+             <div>@item.Description</div>
+		 </div>
+	}
