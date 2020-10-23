@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Grid";
+}
+
+@model DateGrid
+
+<h1>Grid</h1>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th><=</th>
+            <th colspan="5">@Model.SelectedViewDate.ToString("MMMM yyyy")</th>
+            <th>=></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int w = 0, i = 0; w < 6; w++)
+        {
+            @:<tr>
+                for (int d = 0; d < 7; d++, i++)
+                {
+                    @:<td>@Model.Days[i]</td>
+                }
+            @:</tr>
+        }
+    </tbody>
+</table>
+

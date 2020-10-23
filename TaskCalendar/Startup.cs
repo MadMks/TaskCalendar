@@ -54,7 +54,7 @@ namespace TaskCalendar
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Calendar}/{action=List}/{id?}");
+                    pattern: "{controller=Calendar}/{action=Grid}/{id?}");
             });
         }
     }
