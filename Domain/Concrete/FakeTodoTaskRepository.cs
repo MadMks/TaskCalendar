@@ -2,6 +2,7 @@
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Domain.Concrete
@@ -17,7 +18,7 @@ namespace Domain.Concrete
             },
             new TodoTask
             {
-                DateTime = DateTime.Parse("23.10.2020 10:00:00"),
+                DateTime = DateTime.Parse("23.10.2020 11:00:00"),
                 Description = "Task 2"
             },
             new TodoTask
@@ -27,9 +28,32 @@ namespace Domain.Concrete
             },
             new TodoTask
             {
-                DateTime = DateTime.Parse("23.10.2020 10:00:00"),
+                DateTime = DateTime.Parse("23.10.2020 12:00:00"),
                 Description = "Task 4"
             },
+
+            new TodoTask
+            {
+                DateTime = DateTime.Parse("28.9.2020 10:00:00"),
+                Description = "Task 5"
+            },
+            new TodoTask
+            {
+                DateTime = DateTime.Parse("8.11.2020 12:00:00"),
+                Description = "Task 6"
+            },
         };
+
+        public List<IGrouping<DateTime, TodoTask>> GetTasksForEachDay(DateTime startDate, int countOfDays)
+        {
+            List<IGrouping<DateTime, TodoTask>> result
+                = Tasks
+                .Where(dt => dt.DateTime.Date >= startDate.Date
+                && dt.DateTime.Date <= startDate.AddDays(countOfDays))
+                .GroupBy(d => d.DateTime.Date)
+                .ToList();
+
+            return result;
+        }
     }
 }

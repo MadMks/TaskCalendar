@@ -21,7 +21,10 @@
             @:<tr>
                 for (int d = 0; d < 7; d++, i++)
                 {
-                    @:<td>@Model.Days[i]</td>
+                    @:<td>@Model.Days[i].Date.Day @if (Model.Days[i].QuantityTask > 0)
+                        {
+                            @:<span class="quantityTask">(@Model.Days[i].QuantityTask)</span>
+                        }</td>
                 }
             @:</tr>
         }

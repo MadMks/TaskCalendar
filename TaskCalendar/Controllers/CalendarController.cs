@@ -28,9 +28,52 @@ namespace TaskCalendar.Controllers
         {
             DateTime selectedDate = new DateTime(y, m, 1);
 
-            DateGrid dateGrid = new DateGrid(selectedDate);
+            List<IGrouping<DateTime, TodoTask>> groupDaysTasks
+                = taskRepository.GetTasksForEachDay(
+                    DateGrid.GetPrevMonthDateForGrid(selectedDate),
+                    6 * 7);
+
+            DateGrid dateGrid = new DateGrid
+            {
+                SelectedViewDate = selectedDate,
+                Days = DateGrid.GetListShowingDays(
+                    selectedDate,
+                    groupDaysTasks)
+            };
 
             return View(dateGrid);
+        }
+
+        public string Test()
+        {
+            //List<IGrouping<DateTime, TodoTask>> result 
+            //    = taskRepository.Tasks
+            //    .Where(dt => dt.DateTime.Date >= new DateTime(2020, 10, 23) 
+            //    && dt.DateTime.Date <= new DateTime(2020, 10, 23))
+            //    .GroupBy(d => d.DateTime.Date)
+            //    .ToList();
+
+            //string str = "Count - " + result.Count.ToString() + "\n";
+
+            //str = str + (result[0].Key.ToString() + " - " + result[0].Count());
+
+
+
+            //foreach (var item in result)
+            //{
+            //    foreach (var item2 in item)
+            //    {
+            //        str = str + item2.
+            //    }
+            //}
+            List<IGrouping<DateTime, TodoTask>> todoTasks
+                = taskRepository.GetTasksForEachDay(
+                    new DateTime(2020, 10, 23),
+                    5);
+
+            string str = todoTasks.Count.ToString();
+
+            return str;
         }
     }
 }
