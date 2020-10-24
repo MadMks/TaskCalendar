@@ -12,6 +12,7 @@ namespace TaskCalendar.Controllers
     public class CalendarController : Controller
     {
         private ITodoTaskRepository taskRepository;
+        // Default for testing
         private const int CURRENT_YEAR = 2020;
         private const int CURRENT_MONTH = 10;
 

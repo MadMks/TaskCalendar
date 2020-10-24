@@ -69,9 +69,13 @@ namespace TaskCalendar.Models
 
         public static DateTime GetPrevMonthDateForGrid(DateTime dateTime)
         {
-            int prevMonthDay = (int)dateTime.DayOfWeek - 1;
-            dateTime = dateTime.AddDays(-prevMonthDay);
-            return dateTime;
+            int dayOfWeek = (int)dateTime.DayOfWeek == 0 
+                ? 7 
+                : (int)dateTime.DayOfWeek;
+
+            int prevMonthDay = dayOfWeek - 1;
+            DateTime prevMonthDateTime = dateTime.AddDays(-prevMonthDay);
+            return prevMonthDateTime;
         }
 
         private static bool IsTaskExists(
