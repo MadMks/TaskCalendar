@@ -21,8 +21,12 @@
             @:<tr>
                 for (int d = 0; d < 7; d++, i++)
                 {
-                    @:<td>
-        <a href="/Calendar/ListTasksForDay?y=@Model.Days[i].Date.Year&m=@Model.Days[i].Date.Month&d=@Model.Days[i].Date.Day">@Model.Days[i].Date.Day</a>
+                    @:<td @if (Model.Days[i].Date.Month != Model.SelectedViewDate.Month)
+                    {
+                        @:class="table-secondary"
+                    }>
+        <a href="/Calendar/ListTasksForDay?y=@Model.Days[i].Date.Year&m=@Model.Days[i].Date.Month&d=@Model.Days[i].Date.Day">
+        @Model.Days[i].Date.Day</a>
                         @if (Model.Days[i].QuantityTask > 0)
                         {
                             @:<span class="quantityTask">(@Model.Days[i].QuantityTask)</span>
