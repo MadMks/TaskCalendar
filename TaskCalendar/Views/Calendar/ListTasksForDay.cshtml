@@ -23,10 +23,10 @@
 @foreach (var item in Model.Tasks) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
+                @item.DateTime.ToString("dd.MM.yyyy HH:mm")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @item.Description
             </td>
             <td>
                 <form action="Delete" method="post">
@@ -42,7 +42,7 @@
 
 <div>
 
-    <h2>Add task</h2>
+    <h2 class="mb-3">Add task</h2>
     <form action="Add" method="post" class="form-inline row">
         <div class="form-group mr-4 col-1">
             <label class="sr-only">DateTime</label>
