@@ -20,5 +20,9 @@ namespace Domain.Abstract
             int countOfDays);
 
         // TODO : get tasks in day
+
+        List<TodoTask> GetTasksInADay(DateTime date);
+
+        List<DateTime> GetTimesDay();
     }
 }

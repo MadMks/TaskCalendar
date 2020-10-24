@@ -45,6 +45,23 @@ namespace TaskCalendar.Controllers
             return View(dateGrid);
         }
 
+        public ViewResult ListTasksForDay(int y, int m, int d)
+        {
+            DateTime selectedDate = new DateTime(y, m, d);
+
+            List<TodoTask> tasks = taskRepository
+                .GetTasksInADay(selectedDate);
+
+            DataViewListTask dataViewList
+                = new DataViewListTask
+                {
+                    Tasks = tasks,
+                    DropDownTimes = taskRepository.GetTimesDay()
+                };
+
+            return View(dataViewList);
+        }
+
         public string Test()
         {
             //List<IGrouping<DateTime, TodoTask>> result 

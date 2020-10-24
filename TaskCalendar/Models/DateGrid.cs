@@ -74,8 +74,8 @@ namespace TaskCalendar.Models
                 : (int)dateTime.DayOfWeek;
 
             int prevMonthDay = dayOfWeek - 1;
-            DateTime prevMonthDateTime = dateTime.AddDays(-prevMonthDay);
-            return prevMonthDateTime;
+            dateTime = dateTime.AddDays(-prevMonthDay);
+            return dateTime;
         }
 
         private static bool IsTaskExists(
