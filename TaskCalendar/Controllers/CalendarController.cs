@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Abstract;
 using Domain.Entities;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using TaskCalendar.Models;
 
@@ -51,30 +52,35 @@ namespace TaskCalendar.Controllers
             DataViewListTask dataViewList
                 = new DataViewListTask
                 {
+                    SelectedDate = selectedDate,
                     Tasks = tasks,
-                    DropDownTimes = taskRepository.GetTimesDay(selectedDate)
+                    DropDownTimes = taskRepository.GetTimesDay()
                 };
 
             return View(dataViewList);
         }
 
         [HttpPost]
-        public ActionResult Add(DateTime DateTime, string Description)
+        public ActionResult Add(string time, string description, DateTime curDate)
         {
             try
             {
+                TimeDTO timeDTO = new TimeDTO(time);
+                DateTime date = new DateTime(
+                    curDate.Year, curDate.Month, curDate.Day,
+                    timeDTO.Hour, timeDTO.Minute, 0);
                 TodoTask newTask = new TodoTask
                 {
-                    DateTime = DateTime,
-                    Description = Description
+                    DateTime = date,
+                    Description = description
                 };
                 taskRepository.Add(newTask);
 
                 return RedirectToAction($"ListTasksForDay", 
                     new { 
-                        y = DateTime.Year,
-                        m = DateTime.Month,
-                        d = DateTime.Day
+                        y = curDate.Year,
+                        m = curDate.Month,
+                        d = curDate.Day
                     } 
                     );
             }

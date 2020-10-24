@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Domain.Abstract
 
         List<TodoTask> GetTasksInADay(DateTime dateTime);
 
-        List<DateTime> GetTimesDay(DateTime date);
+        List<TimeDTO> GetTimesDay();
 
         void Add(TodoTask task);
         void Delete(int id);

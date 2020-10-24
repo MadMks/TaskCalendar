@@ -1,6 +1,7 @@
 ﻿using Domain.Abstract;
 using Domain.Context;
 using Domain.Entities;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,16 +55,20 @@ namespace Domain.Concrete
             return tasks;
         }
 
-        public List<DateTime> GetTimesDay(DateTime date)
+        public List<TimeDTO> GetTimesDay()
         {
             DateTime startTime = new DateTime(
-                date.Year, date.Month, date.Day, 8, 0, 0);
+                1, 1, 1, 8, 0, 0);
 
-            List<DateTime> times = new List<DateTime>();
+            List<TimeDTO> times = new List<TimeDTO>();
 
             for (int i = 0; i < 24; i++)
             {
-                times.Add(startTime);
+                times.Add(new TimeDTO 
+                {
+                    Hour = startTime.Hour,
+                    Minute = startTime.Minute
+                });
                 startTime = startTime.AddMinutes(30);
             }
 
