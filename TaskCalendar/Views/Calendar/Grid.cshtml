@@ -10,9 +10,9 @@
 <table class="table table-bordered text-center">
     <thead>
         <tr>
-            <th><=</th>
+            <th><a href="/?y=@Model.SelectedViewDate.Year&m=@Model.SelectedViewDate.AddMonths(-1).Month"><=</a></th>
             <th colspan="5">@Model.SelectedViewDate.ToString("MMMM yyyy")</th>
-            <th>=></th>
+            <th><a href="/?y=@Model.SelectedViewDate.Year&m=@Model.SelectedViewDate.AddMonths(1).Month">=></a></th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
             @:<tr>
                 for (int d = 0; d < 7; d++, i++)
                 {
-                    @:<td>@Model.Days[i].Date.Day @if (Model.Days[i].QuantityTask > 0)
+                    @:<td><a href=""> @Model.Days[i].Date.Day</a> @if (Model.Days[i].QuantityTask > 0)
                         {
                             @:<span class="quantityTask">(@Model.Days[i].QuantityTask)</span>
                         }</td>
