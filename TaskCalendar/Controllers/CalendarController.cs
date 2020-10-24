@@ -20,10 +20,10 @@ namespace TaskCalendar.Controllers
         {
             taskRepository = _taskRepository;
         }
-        public ViewResult List()
-        {
-            return View(taskRepository.Tasks);
-        }
+        //public ViewResult List()
+        //{
+        //    return View(taskRepository.Tasks);
+        //}
 
         public ViewResult Grid(int y = CURRENT_YEAR, int m = CURRENT_MONTH)
         {

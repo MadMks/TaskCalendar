@@ -1,4 +1,5 @@
 ﻿using Domain.Abstract;
+using Domain.Context;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,49 +8,23 @@ using System.Text;
 
 namespace Domain.Concrete
 {
-    public class FakeTodoTaskRepository : ITodoTaskRepository
+    public class TodoTaskRepository : ITodoTaskRepository
     {
-        public IEnumerable<TodoTask> Tasks => new List<TodoTask>
-        {
-            new TodoTask
-            {
-                DateTime = DateTime.Parse("23.10.2020 10:00:00"),
-                Description = "Task 1"
-            },
-            new TodoTask
-            {
-                DateTime = DateTime.Parse("23.10.2020 11:00:00"),
-                Description = "Task 2"
-            },
-            new TodoTask
-            {
-                DateTime = DateTime.Parse("24.10.2020 10:00:00"),
-                Description = "Task 3"
-            },
-            new TodoTask
-            {
-                DateTime = DateTime.Parse("23.10.2020 12:00:00"),
-                Description = "Task 4"
-            },
+        //public IEnumerable<TodoTask> Tasks => throw new NotImplementedException();
+        private TaskContext db;
 
-            new TodoTask
-            {
-                DateTime = DateTime.Parse("28.9.2020 10:00:00"),
-                Description = "Task 5"
-            },
-            new TodoTask
-            {
-                DateTime = DateTime.Parse("8.11.2020 12:00:00"),
-                Description = "Task 6"
-            }
-        };
+        public TodoTaskRepository(TaskContext taskContext)
+        {
+            db = taskContext;
+        }
 
         public List<IGrouping<DateTime, TodoTask>> GetTasksForEachDay(DateTime startDate, int countOfDays)
         {
             List<IGrouping<DateTime, TodoTask>> result
-                = Tasks
+                = db.Tasks
                 .Where(dt => dt.DateTime.Date >= startDate.Date
                 && dt.DateTime.Date <= startDate.AddDays(countOfDays))
+                .AsEnumerable()
                 .GroupBy(d => d.DateTime.Date)
                 .ToList();
 
@@ -58,13 +33,12 @@ namespace Domain.Concrete
 
         public List<TodoTask> GetTasksInADay(DateTime dateTime)
         {
-            List<TodoTask> tasks = Tasks
+            List<TodoTask> tasks = db.Tasks
                 .Where(dt => dt.DateTime.Date == dateTime.Date)
                 .ToList();
 
             return tasks;
         }
-
 
         public List<DateTime> GetTimesDay()
         {

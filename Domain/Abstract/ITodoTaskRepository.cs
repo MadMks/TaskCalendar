@@ -8,7 +8,7 @@ namespace Domain.Abstract
 {
     public interface ITodoTaskRepository
     {
-        IEnumerable<TodoTask> Tasks { get; }
+        //IEnumerable<TodoTask> Tasks { get; }
 
         // TODO : get days and quantity tasks
         //IEnumerable<TodoTask> GetNumberOfTasksForEachDay(
@@ -21,7 +21,7 @@ namespace Domain.Abstract
 
         // TODO : get tasks in day
 
-        List<TodoTask> GetTasksInADay(DateTime date);
+        List<TodoTask> GetTasksInADay(DateTime dateTime);
 
         List<DateTime> GetTimesDay();
     }
