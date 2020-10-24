@@ -56,10 +56,36 @@ namespace TaskCalendar.Controllers
                 = new DataViewListTask
                 {
                     Tasks = tasks,
-                    DropDownTimes = taskRepository.GetTimesDay()
+                    DropDownTimes = taskRepository.GetTimesDay(selectedDate)
                 };
 
             return View(dataViewList);
+        }
+
+        [HttpPost]
+        public ActionResult Add(DateTime DateTime, string Description)
+        {
+            try
+            {
+                TodoTask newTask = new TodoTask
+                {
+                    DateTime = DateTime,
+                    Description = Description
+                };
+                taskRepository.Add(newTask);
+
+                return RedirectToAction($"ListTasksForDay", 
+                    new { 
+                        y = DateTime.Year,
+                        m = DateTime.Month,
+                        d = DateTime.Day
+                    } 
+                    );
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         public string Test()

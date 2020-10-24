@@ -18,6 +18,12 @@ namespace Domain.Concrete
             db = taskContext;
         }
 
+        public void Add(TodoTask task)
+        {
+            db.Tasks.Add(task);
+            db.SaveChanges();
+        }
+
         public List<IGrouping<DateTime, TodoTask>> GetTasksForEachDay(DateTime startDate, int countOfDays)
         {
             List<IGrouping<DateTime, TodoTask>> result
@@ -40,9 +46,11 @@ namespace Domain.Concrete
             return tasks;
         }
 
-        public List<DateTime> GetTimesDay()
+        public List<DateTime> GetTimesDay(DateTime date)
         {
-            DateTime startTime = new DateTime(1, 1, 1, 8, 0, 0);
+            DateTime startTime = new DateTime(
+                date.Year, date.Month, date.Day, 8, 0, 0);
+
             List<DateTime> times = new List<DateTime>();
 
             for (int i = 0; i < 24; i++)

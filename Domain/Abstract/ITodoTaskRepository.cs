@@ -23,6 +23,8 @@ namespace Domain.Abstract
 
         List<TodoTask> GetTasksInADay(DateTime dateTime);
 
-        List<DateTime> GetTimesDay();
+        List<DateTime> GetTimesDay(DateTime date);
+
+        void Add(TodoTask task);
     }
 }

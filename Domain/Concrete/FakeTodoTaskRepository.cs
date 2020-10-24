@@ -44,6 +44,11 @@ namespace Domain.Concrete
             }
         };
 
+        public void Add(TodoTask task)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<IGrouping<DateTime, TodoTask>> GetTasksForEachDay(DateTime startDate, int countOfDays)
         {
             List<IGrouping<DateTime, TodoTask>> result
@@ -66,7 +71,7 @@ namespace Domain.Concrete
         }
 
 
-        public List<DateTime> GetTimesDay()
+        public List<DateTime> GetTimesDay(DateTime date)
         {
             DateTime startTime = new DateTime(1, 1, 1, 8, 0, 0);
             List<DateTime> times = new List<DateTime>();

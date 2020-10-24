@@ -45,7 +45,7 @@
     <div class="form-group">
         @Html.LabelFor(x => Model.DropDownTimes, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-2">
-            @Html.DropDownListFor(x => Model.DropDownTimes, new SelectList(Model.DropDownTimes.ToList()), htmlAttributes: new { @class = "form-control", id = "Country" })
+            @Html.DropDownListFor(x => Model.DropDownTimes, new SelectList(Model.DropDownTimes.Select(date => date.ToString("H:mm"))), htmlAttributes: new { @class = "form-control", name = "DateTime" })
             @Html.ValidationMessageFor(x => x.DropDownTimes, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-5">
@@ -54,16 +54,17 @@
     </div>
 
     <h2>Создать задачу</h2>
-    <form action="/Task/Add" method="post">
+    <form action="Add" method="post">
         <div class="item">
             <label>DateTime</label>
+            @*@Html.DropDownListFor(x => Model.DropDownTimes, new SelectList(Model.DropDownTimes.Select(date => date.ToString("H:mm"))), htmlAttributes: new { @class = "form-control", name = "DateTime" })*@
             @*<input name="DateTime" value="@Model.Tasks[0].DateTime" />*@
-            @*<select asp-for="DateTime" asp-items="@new SelectList(Model.DropDownTimes)"></select>*@
+            <select name="DateTime" asp-items="@new SelectList(Model.DropDownTimes)"></select>
             @*@Html.DropDownListFor(m => m.DropDownTimes, Model.DropDownTimes as IEnumerable<SelectListItem>)*@
         </div>
         <div class="item">
             <label>Description</label>
-            <input name="Description" value="@Model.Tasks[0].Description" />
+            <input type="text" name="Description" value="" />
         </div>
         <input type="submit" value="Отправить" />
     </form>
