@@ -88,6 +88,27 @@ namespace TaskCalendar.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Delete(int id, DateTime dateTime)
+        {
+            try
+            {
+                taskRepository.Delete(id);
+
+                return RedirectToAction($"ListTasksForDay",
+                    new
+                    {
+                        y = dateTime.Year,
+                        m = dateTime.Month,
+                        d = dateTime.Day
+                    });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         public string Test()
         {
             //List<IGrouping<DateTime, TodoTask>> result 

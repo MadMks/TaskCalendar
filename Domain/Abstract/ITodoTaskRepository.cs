@@ -26,5 +26,6 @@ namespace Domain.Abstract
         List<DateTime> GetTimesDay(DateTime date);
 
         void Add(TodoTask task);
+        void Delete(int id);
     }
 }

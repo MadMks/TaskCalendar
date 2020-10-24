@@ -49,6 +49,11 @@ namespace Domain.Concrete
             throw new NotImplementedException();
         }
 
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<IGrouping<DateTime, TodoTask>> GetTasksForEachDay(DateTime startDate, int countOfDays)
         {
             List<IGrouping<DateTime, TodoTask>> result

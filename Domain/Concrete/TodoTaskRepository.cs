@@ -24,6 +24,16 @@ namespace Domain.Concrete
             db.SaveChanges();
         }
 
+        public void Delete(int id)
+        {
+            TodoTask task = db.Tasks
+                .Where(t => t.TodoTaskID == id)
+                .FirstOrDefault();
+
+            db.Tasks.Remove(task);
+            db.SaveChanges();
+        }
+
         public List<IGrouping<DateTime, TodoTask>> GetTasksForEachDay(DateTime startDate, int countOfDays)
         {
             List<IGrouping<DateTime, TodoTask>> result
