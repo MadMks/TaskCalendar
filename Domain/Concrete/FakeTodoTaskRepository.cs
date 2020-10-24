@@ -1,13 +1,11 @@
-﻿using Domain.Abstract;
-using Domain.Entities;
+﻿using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Domain.Concrete
 {
-    public class FakeTodoTaskRepository : ITodoTaskRepository
+    public class FakeTodoTaskRepository /*: ITodoTaskRepository*/
     {
         public IEnumerable<TodoTask> Tasks => new List<TodoTask>
         {

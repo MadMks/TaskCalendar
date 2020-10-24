@@ -8,23 +8,9 @@ namespace TaskCalendar.Models
 {
     public class DateGrid
     {
-        //public int Year { get; set; }
-        //public int Month { get; set; }
-        //private int prevMonthDay;
         public DateTime SelectedViewDate { get; set; }
         public List<DayCol> Days { get; set; }
 
-        //public DateGrid(DateTime dateTime, List<IGrouping<DateTime, TodoTask>> groupDaysTasks)
-        //{
-        //    SelectedViewDate = dateTime;
-        //    Days = GetListShowingDays(dateTime, groupDaysTasks);
-        //}
-
-        //public DateGrid(DateTime dateTime, List<IGrouping<DateTime, TodoTask>> groupDaysTasks)
-        //{
-        //    SelectedViewDate = dateTime;
-        //    Days = GetListShowingDays(dateTime, groupDaysTasks);
-        //}
 
         public static List<DayCol> GetListShowingDays(
             DateTime dateTime, List<IGrouping<DateTime, TodoTask>> groupDaysTasks)

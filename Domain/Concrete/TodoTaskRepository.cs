@@ -4,13 +4,11 @@ using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Domain.Concrete
 {
     public class TodoTaskRepository : ITodoTaskRepository
     {
-        //public IEnumerable<TodoTask> Tasks => throw new NotImplementedException();
         private TaskContext db;
 
         public TodoTaskRepository(TaskContext taskContext)
@@ -65,7 +63,7 @@ namespace Domain.Concrete
 
             for (int i = 0; i < 24; i++)
             {
-                times.Add(startTime/*.ToString("H:mm")*/);
+                times.Add(startTime);
                 startTime = startTime.AddMinutes(30);
             }
 

@@ -20,10 +20,6 @@ namespace TaskCalendar.Controllers
         {
             taskRepository = _taskRepository;
         }
-        //public ViewResult List()
-        //{
-        //    return View(taskRepository.Tasks);
-        //}
 
         public ViewResult Grid(int y = CURRENT_YEAR, int m = CURRENT_MONTH)
         {
@@ -107,38 +103,6 @@ namespace TaskCalendar.Controllers
             {
                 return View();
             }
-        }
-
-        public string Test()
-        {
-            //List<IGrouping<DateTime, TodoTask>> result 
-            //    = taskRepository.Tasks
-            //    .Where(dt => dt.DateTime.Date >= new DateTime(2020, 10, 23) 
-            //    && dt.DateTime.Date <= new DateTime(2020, 10, 23))
-            //    .GroupBy(d => d.DateTime.Date)
-            //    .ToList();
-
-            //string str = "Count - " + result.Count.ToString() + "\n";
-
-            //str = str + (result[0].Key.ToString() + " - " + result[0].Count());
-
-
-
-            //foreach (var item in result)
-            //{
-            //    foreach (var item2 in item)
-            //    {
-            //        str = str + item2.
-            //    }
-            //}
-            List<IGrouping<DateTime, TodoTask>> todoTasks
-                = taskRepository.GetTasksForEachDay(
-                    new DateTime(2020, 10, 23),
-                    5);
-
-            string str = todoTasks.Count.ToString();
-
-            return str;
         }
     }
 }
